@@ -1,0 +1,1479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Members - Helakapuwa.com | Find Your Perfect Match</title>
+    
+    <!-- Meta tags -->
+    <meta name="description" content="Browse through thousands of verified profiles on Helakapuwa.com and find your perfect life partner in Sri Lanka.">
+    <meta name="keywords" content="sri lanka matrimony profiles, browse members, marriage proposals, find partner">
+    
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-blue: #0096C7;
+            --secondary-blue: #0077A3;
+            --light-blue: #48CAE4;
+            --accent-gold: #FFD60A;
+            --text-dark: #1F2937;
+            --text-gray: #6B7280;
+            --bg-light: #F8FAFC;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-light);
+        }
+
+        /* Search Filters Sidebar */
+        .filters-sidebar {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid #E5E7EB;
+            position: sticky;
+            top: 100px;
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+        }
+
+        .filter-group {
+            border-bottom: 1px solid #F3F4F6;
+            padding: 1.5rem;
+        }
+
+        .filter-group:last-child {
+            border-bottom: none;
+        }
+
+        .filter-title {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .filter-content {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .filter-content.collapsed {
+            max-height: 0;
+            overflow: hidden;
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+        }
+
+        .filter-checkbox {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #D1D5DB;
+            border-radius: 4px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .filter-checkbox input {
+            opacity: 0;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .filter-checkbox input:checked + .checkbox-mark {
+            background: var(--primary-blue);
+            border-color: var(--primary-blue);
+        }
+
+        .filter-checkbox input:checked + .checkbox-mark::after {
+            opacity: 1;
+        }
+
+        .checkbox-mark {
+            width: 100%;
+            height: 100%;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-mark::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .range-slider {
+            margin: 1rem 0;
+        }
+
+        .range-input {
+            width: 100%;
+            height: 6px;
+            background: #E5E7EB;
+            border-radius: 3px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .range-input::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .range-input::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Member Cards */
+        .member-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .member-card {
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid #E5E7EB;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .member-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 150, 199, 0.15);
+            border-color: var(--primary-blue);
+        }
+
+        .member-photo {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, var(--light-blue), var(--primary-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            font-weight: 700;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .member-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .member-status {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            color: var(--text-dark);
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .member-status.online {
+            background: rgba(16, 185, 129, 0.9);
+            color: white;
+        }
+
+        .member-premium {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(135deg, var(--accent-gold), #FF6B6B);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .member-info {
+            padding: 1.5rem;
+        }
+
+        .member-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .member-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-gray);
+            font-size: 0.875rem;
+        }
+
+        .member-detail-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .member-detail-item i {
+            width: 16px;
+            text-align: center;
+            color: var(--primary-blue);
+        }
+
+        .member-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .btn-interest {
+            flex: 1;
+            background: var(--primary-blue);
+            color: white;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-interest:hover {
+            background: var(--secondary-blue);
+            transform: translateY(-2px);
+        }
+
+        .btn-interest:disabled {
+            background: #D1D5DB;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-shortlist {
+            width: 3rem;
+            height: 3rem;
+            background: #F3F4F6;
+            color: var(--text-gray);
+            border: none;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-shortlist:hover,
+        .btn-shortlist.active {
+            background: #FEF3C7;
+            color: #D97706;
+        }
+
+        .btn-more {
+            width: 3rem;
+            height: 3rem;
+            background: #F3F4F6;
+            color: var(--text-gray);
+            border: none;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-more:hover {
+            background: var(--light-blue);
+            color: white;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid #E5E7EB;
+            margin-bottom: 2rem;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid #E5E7EB;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(0, 150, 199, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-gray);
+        }
+
+        /* Results Header */
+        .results-header {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid #E5E7EB;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .sort-dropdown {
+            padding: 0.75rem 1rem;
+            border: 2px solid #E5E7EB;
+            border-radius: 0.75rem;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sort-dropdown:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 3rem;
+        }
+
+        .pagination button {
+            width: 3rem;
+            height: 3rem;
+            border: 2px solid #E5E7EB;
+            background: white;
+            color: var(--text-gray);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pagination button:hover,
+        .pagination button.active {
+            background: var(--primary-blue);
+            border-color: var(--primary-blue);
+            color: white;
+        }
+
+        .pagination button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Mobile Filters Toggle */
+        .mobile-filters-toggle {
+            display: none;
+            background: var(--primary-blue);
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-filters-toggle:hover {
+            background: var(--secondary-blue);
+        }
+
+        /* Loading Animation */
+        .loading-skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .member-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-filters-toggle {
+                display: block;
+            }
+            
+            .filters-sidebar {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 1000;
+                max-height: 100vh;
+                border-radius: 0;
+                margin: 0;
+            }
+            
+            .filters-sidebar.mobile-open {
+                display: block;
+            }
+            
+            .member-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .results-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+
+        /* Custom Scrollbar */
+        .filters-sidebar::-webkit-scrollbar,
+        .filter-content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .filters-sidebar::-webkit-scrollbar-track,
+        .filter-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+
+        .filters-sidebar::-webkit-scrollbar-thumb,
+        .filter-content::-webkit-scrollbar-thumb {
+            background: var(--primary-blue);
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm py-4 sticky top-0 z-40">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-heart text-white"></i>
+                    </div>
+                    <span class="text-xl font-bold text-gray-800">Helakapuwa.com</span>
+                </a>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 transition-colors">Home</a>
+                    <a href="browse-members.html" class="text-blue-600 font-semibold">Browse</a>
+                    <a href="pricing.html" class="text-gray-700 hover:text-blue-600 transition-colors">Pricing</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-blue-600 transition-colors">Contact</a>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <a href="login.html" class="text-blue-600 hover:text-blue-800 transition-colors">Sign In</a>
+                    <a href="register.html" class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition-colors">Join Now</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <div class="relative">
+                <input type="text" class="search-input" placeholder="Search by name, profession, city..." id="searchInput">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <!-- Mobile Filters Toggle -->
+            <div class="lg:hidden">
+                <button class="mobile-filters-toggle" onclick="toggleMobileFilters()">
+                    <i class="fas fa-filter mr-2"></i>
+                    Filters & Search Options
+                </button>
+            </div>
+
+            <!-- Filters Sidebar -->
+            <div class="lg:col-span-1">
+                <div class="filters-sidebar" id="filtersSidebar">
+                    <!-- Close button for mobile -->
+                    <div class="lg:hidden flex justify-between items-center p-4 border-b">
+                        <h3 class="text-lg font-semibold">Filters</h3>
+                        <button onclick="toggleMobileFilters()" class="text-gray-500 hover:text-gray-700">
+                            <i class="fas fa-times text-xl"></i>
+                        </button>
+                    </div>
+
+                    <!-- Age Range -->
+                    <div class="filter-group">
+                        <div class="filter-title" onclick="toggleFilterGroup('age')">
+                            <span>Age Range</span>
+                            <i class="fas fa-chevron-down transition-transform" id="ageIcon"></i>
+                        </div>
+                        <div class="filter-content" id="ageContent">
+                            <div class="range-slider">
+                                <label class="block text-sm text-gray-600 mb-2">Age: <span id="ageDisplay">18 - 60</span></label>
+                                <input type="range" class="range-input" min="18" max="80" value="18" id="minAge">
+                                <input type="range" class="range-input mt-2" min="18" max="80" value="60" id="maxAge">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Religion -->
+                    <div class="filter-group">
+                        <div class="filter-title" onclick="toggleFilterGroup('religion')">
+                            <span>Religion</span>
+                            <i class="fas fa-chevron-down transition-transform" id="religionIcon"></i>
+                        </div>
+                        <div class="filter-content" id="religionContent">
+                            <div class="filter-option">
+                                <div class="filter-checkbox">
+                                    <input type="checkbox" name="religion" value="Buddhist">
+                                    <div class="checkbox-mark"></div>
+                                </div>
+                                <span>Buddhist</span>
+                            </div>
+                            <div class="filter-option">
+                                <div class="filter-checkbox">
+                                    <input type="checkbox" name="religion" value="Hindu">
+                                    <div class="checkbox-mark"></div>
+                                </div>
+                                <span>Hindu</span>
+                            </div>
+                            <div class="filter-option">
+                                <div class="filter-checkbox">
+                                    <input type="checkbox" name="religion" value="Christian">
+                                    <div class="checkbox-mark"></div>
+                                </div>
+                                <span>Christian</span>
+                            </div>
+                            <div class="filter-option">
+                                <div class="filter-checkbox">
+                                    <input type="checkbox" name="religion" value="Islam">
+                                    <div class="checkbox-mark"></div>
+                                </div>
+                                <span>Islam</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Location -->
+                    <div class="filter-group">
+                        <div class="filter-title" onclick="toggleFilterGroup('location')">
+                            <span>Province</span>
+                            <i class="fas fa-chevron-down transition-transform" id="locationIcon"></i>
+                        </div>
+                        <div class="filter-content" id="locationContent">
+                            <div class="filter-option">
+                                <div class="filter-checkbox">
+                                    <input type="checkbox" name="province" value="Western">
+                                    <div class="checkbox-mark"></div>
+                                </div>
+                                <span>Western Province</span>
+                            </div>
+                            <div class="filter-option">
+                                <div class="filter-checkbox">
+                                    <input type="checkbox" name="province" value="Central">
+                                    <div class="checkbox-mark"></div>
+                                </div>
+                                <span>Central Province</span>
+                            </div>
+                            <div class="filter-option">
+                                <div class="filter-checkbox">
+                                    <input type="checkbox" name="province" value="Southern">
+                                    <div class="checkbox-mark"></div>
+                                </div>
+                                <span>Southern Province</span>
+                            </div>
+                            <div class="filter-option">
+                                <div class="filter-checkbox">
+                                    <input type="checkbox" name="province" value="Northern">
+                                    <div class="checkbox-mark"></div>
+                                </div>
+                                <span>Northern Province</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Education -->
+                    <div class="filter-group">
+                        <div class="filter-title" onclick="toggleFilterGroup('education')">
+                            <span>Education</span>
+                            <i class="fas fa-chevron-down transition-transform" id="educationIcon"></i>
+                        </div>
+                        <div class="filter-content" id="educationContent">
+                            <div class="filter-option">
+                                <div class="filter-checkbox">
+                                    <input type="checkbox" name="education" value="High School">
+                                    <div class="checkbox-mark"></div>
+                                </div>
+                                <span>High School</span>
+                            </div>
+                            <div class="filter-option">
+                                <div class="filter-checkbox">
+                                    <input type="checkbox" name="education" value="Bachelor's Degree">
+                                    <div class="checkbox-mark"></div>
+                                </div>
+                                <span>Bachelor's Degree</span>
+                            </div>
+                            <div class="filter-option">
+                                <div class="filter-checkbox">
+                                    <input type="checkbox" name="education" value="Master's Degree">
+                                    <div class="checkbox-mark"></div>
+                                </div>
+                                <span>Master's Degree</span>
+                            </div>
+                            <div class="filter-option">
+                                <div class="filter-checkbox">
+                                    <input type="checkbox" name="education" value="PhD">
+                                    <div class="checkbox-mark"></div>
+                                </div>
+                                <span>PhD</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Profession -->
+                    <div class="filter-group">
+                        <div class="filter-title" onclick="toggleFilterGroup('profession')">
+                            <span>Profession</span>
+                            <i class="fas fa-chevron-down transition-transform" id="professionIcon"></i>
+                        </div>
+                        <div class="filter-content" id="professionContent">
+                            <div class="filter-option">
+                                <div class="filter-checkbox">
+                                    <input type="checkbox" name="profession" value="Engineer">
+                                    <div class="checkbox-mark"></div>
+                                </div>
+                                <span>Engineer</span>
+                            </div>
+                            <div class="filter-option">
+                                <div class="filter-checkbox">
+                                    <input type="checkbox" name="profession" value="Doctor">
+                                    <div class="checkbox-mark"></div>
+                                </div>
+                                <span>Doctor</span>
+                            </div>
+                            <div class="filter-option">
+                                <div class="filter-checkbox">
+                                    <input type="checkbox" name="profession" value="Teacher">
+                                    <div class="checkbox-mark"></div>
+                                </div>
+                                <span>Teacher</span>
+                            </div>
+                            <div class="filter-option">
+                                <div class="filter-checkbox">
+                                    <input type="checkbox" name="profession" value="Businessman">
+                                    <div class="checkbox-mark"></div>
+                                </div>
+                                <span>Businessman</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Clear Filters -->
+                    <div class="filter-group">
+                        <button class="w-full bg-red-100 text-red-600 py-2 px-4 rounded-lg hover:bg-red-200 transition-colors" onclick="clearAllFilters()">
+                            <i class="fas fa-trash mr-2"></i>Clear All Filters
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Members List -->
+            <div class="lg:col-span-3">
+                <!-- Results Header -->
+                <div class="results-header">
+                    <div>
+                        <h2 class="text-xl font-semibold text-gray-800">Browse Members</h2>
+                        <p class="text-gray-600 text-sm" id="resultsCount">Showing <span id="resultStart">1</span>-<span id="resultEnd">12</span> of <span id="totalResults">247</span> members</p>
+                    </div>
+                    
+                    <div class="flex items-center gap-4">
+                        <label class="text-sm text-gray-600">Sort by:</label>
+                        <select class="sort-dropdown" id="sortSelect" onchange="sortMembers()">
+                            <option value="newest">Newest First</option>
+                            <option value="oldest">Oldest First</option>
+                            <option value="age-asc">Age: Low to High</option>
+                            <option value="age-desc">Age: High to Low</option>
+                            <option value="name">Name A-Z</option>
+                            <option value="last-active">Last Active</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Members Grid -->
+                <div class="member-grid" id="membersGrid">
+                    <!-- Members will be loaded here -->
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination" id="pagination">
+                    <!-- Pagination will be generated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Member Profile Modal -->
+    <div id="memberModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-2xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <div class="p-6" id="modalContent">
+                <!-- Modal content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let currentPage = 1;
+        const membersPerPage = 12;
+        let totalMembers = 247;
+        let filteredMembers = [];
+        let allMembers = [];
+
+        // Sample member data
+        const sampleMembers = [
+            {
+                id: 1,
+                name: "Priyanka Silva",
+                age: 25,
+                religion: "Buddhist",
+                province: "Western",
+                city: "Colombo",
+                education: "Bachelor's Degree",
+                profession: "Software Engineer",
+                status: "online",
+                premium: true,
+                photo: null,
+                about: "Looking for a life partner who shares similar values and goals.",
+                lastActive: "2024-01-15"
+            },
+            {
+                id: 2,
+                name: "Kasun Perera",
+                age: 28,
+                religion: "Buddhist",
+                province: "Central",
+                city: "Kandy",
+                education: "Master's Degree",
+                profession: "Doctor",
+                status: "offline",
+                premium: false,
+                photo: null,
+                about: "Family-oriented person seeking a caring and understanding partner.",
+                lastActive: "2024-01-14"
+            },
+            {
+                id: 3,
+                name: "Sanduni Fernando",
+                age: 24,
+                religion: "Christian",
+                province: "Southern",
+                city: "Galle",
+                education: "Bachelor's Degree",
+                profession: "Teacher",
+                status: "online",
+                premium: true,
+                photo: null,
+                about: "Passionate about education and looking for someone who values learning.",
+                lastActive: "2024-01-15"
+            },
+            {
+                id: 4,
+                name: "Roshan Wijaya",
+                age: 30,
+                religion: "Hindu",
+                province: "Western",
+                city: "Negombo",
+                education: "Bachelor's Degree",
+                profession: "Businessman",
+                status: "offline",
+                premium: false,
+                photo: null,
+                about: "Entrepreneur seeking a supportive and ambitious partner.",
+                lastActive: "2024-01-13"
+            },
+            {
+                id: 5,
+                name: "Tharaka Kumara",
+                age: 27,
+                religion: "Buddhist",
+                province: "Southern",
+                city: "Matara",
+                education: "Bachelor's Degree",
+                profession: "Engineer",
+                status: "online",
+                premium: true,
+                photo: null,
+                about: "Love traveling and outdoor activities. Looking for an adventurous partner.",
+                lastActive: "2024-01-15"
+            },
+            {
+                id: 6,
+                name: "Anushka De Silva",
+                age: 26,
+                religion: "Buddhist",
+                province: "Western",
+                city: "Kalutara",
+                education: "Master's Degree",
+                profession: "Accountant",
+                status: "offline",
+                premium: false,
+                photo: null,
+                about: "Quiet and thoughtful person looking for a genuine connection.",
+                lastActive: "2024-01-12"
+            }
+        ];
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            generateSampleData();
+            loadMembers();
+            initializeFilters();
+            initializeSearch();
+        });
+
+        // Generate more sample data
+        function generateSampleData() {
+            const names = ["Priyanka", "Kasun", "Sanduni", "Roshan", "Tharaka", "Anushka", "Dilshan", "Nishani", "Chamara", "Thilini"];
+            const surnames = ["Silva", "Perera", "Fernando", "Wijaya", "Kumara", "De Silva", "Rajapaksa", "Gunasekara", "Mendis", "Jayawardena"];
+            const religions = ["Buddhist", "Hindu", "Christian", "Islam"];
+            const provinces = ["Western", "Central", "Southern", "Northern"];
+            const cities = ["Colombo", "Kandy", "Galle", "Negombo", "Matara", "Kalutara", "Jaffna", "Batticaloa"];
+            const educations = ["High School", "Bachelor's Degree", "Master's Degree", "PhD"];
+            const professions = ["Engineer", "Doctor", "Teacher", "Businessman", "Accountant", "Lawyer", "Nurse", "Designer"];
+
+            allMembers = [...sampleMembers];
+
+            // Generate additional sample members
+            for (let i = 7; i <= 50; i++) {
+                const name = names[Math.floor(Math.random() * names.length)];
+                const surname = surnames[Math.floor(Math.random() * surnames.length)];
+                
+                allMembers.push({
+                    id: i,
+                    name: `${name} ${surname}`,
+                    age: Math.floor(Math.random() * 25) + 18, // 18-42
+                    religion: religions[Math.floor(Math.random() * religions.length)],
+                    province: provinces[Math.floor(Math.random() * provinces.length)],
+                    city: cities[Math.floor(Math.random() * cities.length)],
+                    education: educations[Math.floor(Math.random() * educations.length)],
+                    profession: professions[Math.floor(Math.random() * professions.length)],
+                    status: Math.random() > 0.7 ? "online" : "offline",
+                    premium: Math.random() > 0.6,
+                    photo: null,
+                    about: "Looking for a meaningful relationship with someone who shares similar values.",
+                    lastActive: `2024-01-${Math.floor(Math.random() * 15) + 1}`
+                });
+            }
+
+            filteredMembers = [...allMembers];
+            totalMembers = allMembers.length;
+        }
+
+        // Load and display members
+        function loadMembers() {
+            const startIndex = (currentPage - 1) * membersPerPage;
+            const endIndex = startIndex + membersPerPage;
+            const membersToShow = filteredMembers.slice(startIndex, endIndex);
+
+            const grid = document.getElementById('membersGrid');
+            grid.innerHTML = '';
+
+            // Show loading animation
+            showLoadingState();
+
+            setTimeout(() => {
+                grid.innerHTML = '';
+                membersToShow.forEach(member => {
+                    const memberCard = createMemberCard(member);
+                    grid.appendChild(memberCard);
+                });
+
+                updateResultsInfo();
+                generatePagination();
+            }, 500);
+        }
+
+        // Create member card
+        function createMemberCard(member) {
+            const card = document.createElement('div');
+            card.className = 'member-card';
+            
+            card.innerHTML = `
+                <div class="member-photo">
+                    ${member.photo ? `<img src="${member.photo}" alt="${member.name}">` : member.name.charAt(0)}
+                    <div class="member-status ${member.status}">${member.status === 'online' ? 'Online' : 'Last seen'}</div>
+                    ${member.premium ? '<div class="member-premium"><i class="fas fa-crown mr-1"></i>Premium</div>' : ''}
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">${member.name}</h3>
+                    <div class="member-details">
+                        <div class="member-detail-item">
+                            <i class="fas fa-birthday-cake"></i>
+                            <span>${member.age} years old</span>
+                        </div>
+                        <div class="member-detail-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>${member.city}, ${member.province}</span>
+                        </div>
+                        <div class="member-detail-item">
+                            <i class="fas fa-briefcase"></i>
+                            <span>${member.profession}</span>
+                        </div>
+                        <div class="member-detail-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>${member.education}</span>
+                        </div>
+                        <div class="member-detail-item">
+                            <i class="fas fa-pray"></i>
+                            <span>${member.religion}</span>
+                        </div>
+                    </div>
+                    <div class="member-actions">
+                        <button class="btn-interest" onclick="sendInterest(${member.id})">
+                            <i class="fas fa-heart"></i>
+                            Send Interest
+                        </button>
+                        <button class="btn-shortlist" onclick="toggleShortlist(${member.id}, this)">
+                            <i class="fas fa-bookmark"></i>
+                        </button>
+                        <button class="btn-more" onclick="viewProfile(${member.id})">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            return card;
+        }
+
+        // Show loading state
+        function showLoadingState() {
+            const grid = document.getElementById('membersGrid');
+            grid.innerHTML = '';
+            
+            for (let i = 0; i < 12; i++) {
+                const skeleton = document.createElement('div');
+                skeleton.className = 'member-card';
+                skeleton.innerHTML = `
+                    <div class="member-photo loading-skeleton"></div>
+                    <div class="member-info">
+                        <div class="loading-skeleton h-6 mb-2 rounded"></div>
+                        <div class="loading-skeleton h-4 mb-1 rounded w-3/4"></div>
+                        <div class="loading-skeleton h-4 mb-1 rounded w-2/3"></div>
+                        <div class="loading-skeleton h-4 mb-4 rounded w-1/2"></div>
+                        <div class="flex gap-2">
+                            <div class="loading-skeleton h-10 rounded flex-1"></div>
+                            <div class="loading-skeleton h-10 w-12 rounded"></div>
+                            <div class="loading-skeleton h-10 w-12 rounded"></div>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(skeleton);
+            }
+        }
+
+        // Update results info
+        function updateResultsInfo() {
+            const startIndex = (currentPage - 1) * membersPerPage + 1;
+            const endIndex = Math.min(currentPage * membersPerPage, filteredMembers.length);
+            
+            document.getElementById('resultStart').textContent = startIndex;
+            document.getElementById('resultEnd').textContent = endIndex;
+            document.getElementById('totalResults').textContent = filteredMembers.length;
+        }
+
+        // Generate pagination
+        function generatePagination() {
+            const totalPages = Math.ceil(filteredMembers.length / membersPerPage);
+            const pagination = document.getElementById('pagination');
+            pagination.innerHTML = '';
+
+            // Previous button
+            const prevBtn = document.createElement('button');
+            prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+            prevBtn.disabled = currentPage === 1;
+            prevBtn.onclick = () => changePage(currentPage - 1);
+            pagination.appendChild(prevBtn);
+
+            // Page numbers
+            const startPage = Math.max(1, currentPage - 2);
+            const endPage = Math.min(totalPages, currentPage + 2);
+
+            if (startPage > 1) {
+                const firstBtn = document.createElement('button');
+                firstBtn.textContent = '1';
+                firstBtn.onclick = () => changePage(1);
+                pagination.appendChild(firstBtn);
+
+                if (startPage > 2) {
+                    const ellipsis = document.createElement('span');
+                    ellipsis.textContent = '...';
+                    ellipsis.className = 'px-2 text-gray-500';
+                    pagination.appendChild(ellipsis);
+                }
+            }
+
+            for (let i = startPage; i <= endPage; i++) {
+                const pageBtn = document.createElement('button');
+                pageBtn.textContent = i;
+                pageBtn.className = i === currentPage ? 'active' : '';
+                pageBtn.onclick = () => changePage(i);
+                pagination.appendChild(pageBtn);
+            }
+
+            if (endPage < totalPages) {
+                if (endPage < totalPages - 1) {
+                    const ellipsis = document.createElement('span');
+                    ellipsis.textContent = '...';
+                    ellipsis.className = 'px-2 text-gray-500';
+                    pagination.appendChild(ellipsis);
+                }
+
+                const lastBtn = document.createElement('button');
+                lastBtn.textContent = totalPages;
+                lastBtn.onclick = () => changePage(totalPages);
+                pagination.appendChild(lastBtn);
+            }
+
+            // Next button
+            const nextBtn = document.createElement('button');
+            nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+            nextBtn.disabled = currentPage === totalPages;
+            nextBtn.onclick = () => changePage(currentPage + 1);
+            pagination.appendChild(nextBtn);
+        }
+
+        // Change page
+        function changePage(page) {
+            const totalPages = Math.ceil(filteredMembers.length / membersPerPage);
+            if (page >= 1 && page <= totalPages) {
+                currentPage = page;
+                loadMembers();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Initialize filters
+        function initializeFilters() {
+            // Age range sliders
+            const minAgeSlider = document.getElementById('minAge');
+            const maxAgeSlider = document.getElementById('maxAge');
+            
+            function updateAgeDisplay() {
+                const minAge = parseInt(minAgeSlider.value);
+                const maxAge = parseInt(maxAgeSlider.value);
+                
+                if (minAge > maxAge) {
+                    minAgeSlider.value = maxAge;
+                }
+                if (maxAge < minAge) {
+                    maxAgeSlider.value = minAge;
+                }
+                
+                document.getElementById('ageDisplay').textContent = `${minAgeSlider.value} - ${maxAgeSlider.value}`;
+                applyFilters();
+            }
+
+            minAgeSlider.addEventListener('input', updateAgeDisplay);
+            maxAgeSlider.addEventListener('input', updateAgeDisplay);
+
+            // Checkbox filters
+            const checkboxes = document.querySelectorAll('.filter-checkbox input');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', applyFilters);
+            });
+        }
+
+        // Initialize search
+        function initializeSearch() {
+            const searchInput = document.getElementById('searchInput');
+            let searchTimeout;
+
+            searchInput.addEventListener('input', function() {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => {
+                    applyFilters();
+                }, 300);
+            });
+        }
+
+        // Apply filters
+        function applyFilters() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const minAge = parseInt(document.getElementById('minAge').value);
+            const maxAge = parseInt(document.getElementById('maxAge').value);
+            
+            // Get selected filters
+            const selectedReligions = getSelectedCheckboxValues('religion');
+            const selectedProvinces = getSelectedCheckboxValues('province');
+            const selectedEducations = getSelectedCheckboxValues('education');
+            const selectedProfessions = getSelectedCheckboxValues('profession');
+
+            filteredMembers = allMembers.filter(member => {
+                // Search term filter
+                if (searchTerm && !member.name.toLowerCase().includes(searchTerm) && 
+                    !member.profession.toLowerCase().includes(searchTerm) && 
+                    !member.city.toLowerCase().includes(searchTerm)) {
+                    return false;
+                }
+
+                // Age filter
+                if (member.age < minAge || member.age > maxAge) {
+                    return false;
+                }
+
+                // Religion filter
+                if (selectedReligions.length > 0 && !selectedReligions.includes(member.religion)) {
+                    return false;
+                }
+
+                // Province filter
+                if (selectedProvinces.length > 0 && !selectedProvinces.includes(member.province)) {
+                    return false;
+                }
+
+                // Education filter
+                if (selectedEducations.length > 0 && !selectedEducations.includes(member.education)) {
+                    return false;
+                }
+
+                // Profession filter
+                if (selectedProfessions.length > 0 && !selectedProfessions.includes(member.profession)) {
+                    return false;
+                }
+
+                return true;
+            });
+
+            currentPage = 1;
+            loadMembers();
+        }
+
+        // Get selected checkbox values
+        function getSelectedCheckboxValues(name) {
+            const checkboxes = document.querySelectorAll(`input[name="${name}"]:checked`);
+            return Array.from(checkboxes).map(cb => cb.value);
+        }
+
+        // Toggle filter group
+        function toggleFilterGroup(groupName) {
+            const content = document.getElementById(`${groupName}Content`);
+            const icon = document.getElementById(`${groupName}Icon`);
+            
+            content.classList.toggle('collapsed');
+            icon.style.transform = content.classList.contains('collapsed') ? 'rotate(180deg)' : 'rotate(0deg)';
+        }
+
+        // Clear all filters
+        function clearAllFilters() {
+            // Reset search
+            document.getElementById('searchInput').value = '';
+            
+            // Reset age sliders
+            document.getElementById('minAge').value = 18;
+            document.getElementById('maxAge').value = 60;
+            document.getElementById('ageDisplay').textContent = '18 - 60';
+            
+            // Uncheck all checkboxes
+            const checkboxes = document.querySelectorAll('.filter-checkbox input');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = false;
+            });
+
+            applyFilters();
+        }
+
+        // Sort members
+        function sortMembers() {
+            const sortBy = document.getElementById('sortSelect').value;
+            
+            switch (sortBy) {
+                case 'newest':
+                    filteredMembers.sort((a, b) => b.id - a.id);
+                    break;
+                case 'oldest':
+                    filteredMembers.sort((a, b) => a.id - b.id);
+                    break;
+                case 'age-asc':
+                    filteredMembers.sort((a, b) => a.age - b.age);
+                    break;
+                case 'age-desc':
+                    filteredMembers.sort((a, b) => b.age - a.age);
+                    break;
+                case 'name':
+                    filteredMembers.sort((a, b) => a.name.localeCompare(b.name));
+                    break;
+                case 'last-active':
+                    filteredMembers.sort((a, b) => new Date(b.lastActive) - new Date(a.lastActive));
+                    break;
+            }
+
+            currentPage = 1;
+            loadMembers();
+        }
+
+        // Mobile filters toggle
+        function toggleMobileFilters() {
+            const sidebar = document.getElementById('filtersSidebar');
+            sidebar.classList.toggle('mobile-open');
+            document.body.style.overflow = sidebar.classList.contains('mobile-open') ? 'hidden' : 'auto';
+        }
+
+        // Send interest
+        function sendInterest(memberId) {
+            const member = allMembers.find(m => m.id === memberId);
+            if (member) {
+                showNotification(`Interest sent to ${member.name}!`, 'success');
+                
+                // Disable button temporarily
+                event.target.disabled = true;
+                event.target.innerHTML = '<i class="fas fa-check mr-2"></i>Interest Sent';
+                
+                setTimeout(() => {
+                    event.target.disabled = false;
+                    event.target.innerHTML = '<i class="fas fa-heart mr-2"></i>Send Interest';
+                }, 3000);
+            }
+        }
+
+        // Toggle shortlist
+        function toggleShortlist(memberId, button) {
+            const member = allMembers.find(m => m.id === memberId);
+            if (member) {
+                button.classList.toggle('active');
+                const action = button.classList.contains('active') ? 'added to' : 'removed from';
+                showNotification(`${member.name} ${action} shortlist!`, 'info');
+            }
+        }
+
+        // View profile
+        function viewProfile(memberId) {
+            const member = allMembers.find(m => m.id === memberId);
+            if (member) {
+                const modal = document.getElementById('memberModal');
+                const modalContent = document.getElementById('modalContent');
+                
+                modalContent.innerHTML = `
+                    <div class="flex justify-between items-start mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800">${member.name}</h2>
+                        <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700">
+                            <i class="fas fa-times text-xl"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="member-photo h-64">
+                            ${member.photo ? `<img src="${member.photo}" alt="${member.name}" class="w-full h-full object-cover rounded-lg">` : `<div class="w-full h-full bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center text-white text-6xl font-bold">${member.name.charAt(0)}</div>`}
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-semibold mb-4">Personal Information</h3>
+                            <div class="space-y-3">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Age:</span>
+                                    <span class="font-medium">${member.age} years</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Religion:</span>
+                                    <span class="font-medium">${member.religion}</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Location:</span>
+                                    <span class="font-medium">${member.city}, ${member.province}</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Education:</span>
+                                    <span class="font-medium">${member.education}</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Profession:</span>
+                                    <span class="font-medium">${member.profession}</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Status:</span>
+                                    <span class="font-medium ${member.status === 'online' ? 'text-green-600' : 'text-gray-500'}">${member.status === 'online' ? 'Online' : 'Offline'}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <h3 class="text-lg font-semibold mb-3">About</h3>
+                        <p class="text-gray-700 leading-relaxed">${member.about}</p>
+                    </div>
+                    
+                    <div class="flex gap-4 mt-8">
+                        <button class="flex-1 bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors" onclick="sendInterest(${member.id})">
+                            <i class="fas fa-heart mr-2"></i>Send Interest
+                        </button>
+                        <button class="flex-1 bg-gray-100 text-gray-700 py-3 px-6 rounded-lg hover:bg-gray-200 transition-colors" onclick="toggleShortlist(${member.id}, this)">
+                            <i class="fas fa-bookmark mr-2"></i>Add to Shortlist
+                        </button>
+                    </div>
+                `;
+                
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('memberModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Show notification
+        function showNotification(message, type = 'info') {
+            const existingNotifications = document.querySelectorAll('.notification');
+            existingNotifications.forEach(notif => notif.remove());
+
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? '#10B981' : type === 'error' ? '#EF4444' : '#3B82F6'};
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 0.5rem;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+                z-index: 10000;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                max-width: 300px;
+                font-weight: 500;
+            `;
+
+            notification.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                    <span>${message}</span>
+                    <button onclick="this.parentElement.parentElement.remove()" style="background: none; border: none; color: white; margin-left: auto; cursor: pointer;">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `;
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    if (notification.parentElement) {
+                        notification.remove();
+                    }
+                }, 300);
+            }, 4000);
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('memberModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Close mobile filters when clicking outside
+        document.addEventListener('click', function(e) {
+            const sidebar = document.getElementById('filtersSidebar');
+            const toggleBtn = document.querySelector('.mobile-filters-toggle');
+            
+            if (window.innerWidth <= 768 && sidebar.classList.contains('mobile-open') && 
+                !sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
+                toggleMobileFilters();
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                document.getElementById('filtersSidebar').classList.remove('mobile-open');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
+</body>
+</html>

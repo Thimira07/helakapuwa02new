@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Plans - Helakapuwa.com | Choose Your Perfect Package</title>
+    
+    <!-- Meta tags -->
+    <meta name="description" content="Choose from our affordable pricing plans on Helakapuwa.com. Get premium features to find your perfect life partner faster.">
+    <meta name="keywords" content="sri lanka matrimony pricing, wedding plans, premium membership, marriage packages">
+    
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-blue: #0096C7;
+            --secondary-blue: #0077A3;
+            --light-blue: #48CAE4;
+            --accent-gold: #FFD60A;
+            --text-dark: #1F2937;
+            --text-gray: #6B7280;
+            --bg-light: #F8FAFC;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--bg-light) 0%, #E0F2FE 100%);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>') no-repeat center center;
+            background-size: cover;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Pricing Cards */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 2rem;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 150, 199, 0.1);
+            border: 1px solid #E5E7EB;
+            position: relative;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 150, 199, 0.2);
+        }
+
+        .pricing-card.popular {
+            border: 2px solid var(--primary-blue);
+            transform: translateY(-1rem);
+        }
+
+        .pricing-card.popular::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--primary-blue);
+            color: white;
+            text-align: center;
+            padding: 0.5rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .pricing-card.premium {
+            background: linear-gradient(135deg, #1F2937 0%, #374151 100%);
+            color: white;
+            border: 2px solid var(--accent-gold);
+        }
+
+        .pricing-card.premium::before {
+            content: 'Premium Choice';
+            background: var(--accent-gold);
+            color: var(--text-dark);
+        }
+
+        .plan-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            margin-top: 1rem;
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-description {
+            color: var(--text-gray);
+            font-size: 0.875rem;
+        }
+
+        .pricing-card.premium .plan-description {
+            color: #D1D5DB;
+        }
+
+        .plan-price {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .price-amount {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            line-height: 1;
+        }
+
+        .pricing-card.premium .price-amount {
+            color: var(--accent-gold);
+        }
+
+        .price-currency {
+            font-size: 1.5rem;
+            font-weight: 600;
+            vertical-align: top;
+        }
+
+        .price-period {
+            color: var(--text-gray);
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+
+        .pricing-card.premium .price-period {
+            color: #D1D5DB;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .plan-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.875rem;
+        }
+
+        .feature-icon {
+            width: 20px;
+            height: 20px;
+            background: #10B981;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .feature-icon.not-included {
+            background: #EF4444;
+        }
+
+        .plan-cta {
+            text-align: center;
+        }
+
+        .cta-button {
+            width: 100%;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 1rem;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button.primary {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: white;
+        }
+
+        .cta-button.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 150, 199, 0.4);
+        }
+
+        .cta-button.secondary {
+            background: #F3F4F6;
+            color: var(--text-dark);
+            border: 2px solid #E5E7EB;
+        }
+
+        .cta-button.secondary:hover {
+            background: var(--primary-blue);
+            color: white;
+            border-color: var(--primary-blue);
+        }
+
+        .cta-button.premium {
+            background: linear-gradient(135deg, var(--accent-gold) 0%, #FF6B6B 100%);
+            color: var(--text-dark);
+        }
+
+        .cta-button.premium:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 214, 10, 0.4);
+        }
+
+        /* Features Comparison Table */
+        .comparison-table {
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 150, 199, 0.1);
+            margin: 4rem 0;
+        }
+
+        .table-header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 0;
+        }
+
+        .table-cell {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #F3F4F6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .table-cell.feature-name {
+            justify-content: flex-start;
+            font-weight: 500;
+            background: #F9FAFB;
+        }
+
+        .table-cell.plan-header {
+            font-weight: 600;
+            background: #F3F4F6;
+            color: var(--text-dark);
+        }
+
+        .check-icon {
+            color: #10B981;
+            font-size: 1.25rem;
+        }
+
+        .cross-icon {
+            color: #EF4444;
+            font-size: 1.25rem;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid #E5E7EB;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #F9FAFB;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+            display: none;
+        }
+
+        .faq-answer.open {
+            display: block;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-icon.rotated {
+            transform: rotate(180deg);
+        }
+
+        /* Success Stories */
+        .success-stories {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 150, 199, 0.1);
+            margin: 4rem 0;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .story-card {
+            background: #F9FAFB;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .story-quote {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        .story-author {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .story-date {
+            font-size: 0.875rem;
+            color: var(--text-gray);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .pricing-card.popular {
+                transform: none;
+            }
+            
+            .comparison-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .table-cell {
+                padding: 0.75rem;
+            }
+            
+            .comparison-table {
+                margin: 2rem 0;
+            }
+        }
+
+        /* Animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-delay-1 { animation-delay: 0.1s; }
+        .animate-delay-2 { animation-delay: 0.2s; }
+        .animate-delay-3 { animation-delay: 0.3s; }
+        .animate-delay-4 { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm py-4 sticky top-0 z-40">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-heart text-white"></i>
+                    </div>
+                    <span class="text-xl font-bold text-gray-800">Helakapuwa.com</span>
+                </a>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 transition-colors">Home</a>
+                    <a href="browse-members.html" class="text-gray-700 hover:text-blue-600 transition-colors">Browse</a>
+                    <a href="pricing.html" class="text-blue-600 font-semibold">Pricing</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-blue-600 transition-colors">Contact</a>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <a href="login.html" class="text-blue-600 hover:text-blue-800 transition-colors">Sign In</a>
+                    <a href="register.html" class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition-colors">Join Now</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section py-20">
+        <div class="container mx-auto px-4">
+            <div class="hero-content text-center">
+                <h1 class="text-5xl font-bold mb-6">Choose Your Perfect Plan</h1>
+                <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+                    Get the features you need to find your life partner faster. All plans include access to verified profiles and secure messaging.
+                </p>
+                <div class="flex justify-center items-center gap-4 mb-8">
+                    <span class="text-blue-100">Monthly</span>
+                    <div class="relative">
+                        <input type="checkbox" id="billingToggle" class="sr-only" onchange="toggleBilling()">
+                        <label for="billingToggle" class="flex items-center cursor-pointer">
+                            <div class="relative">
+                                <div class="block bg-blue-200 w-14 h-8 rounded-full"></div>
+                                <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                            </div>
+                        </label>
+                    </div>
+                    <span class="text-blue-100">Annual <span class="bg-yellow-400 text-yellow-900 px-2 py-1 rounded-full text-xs font-semibold ml-2">Save 20%</span></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Plans -->
+    <section class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="pricing-grid">
+                <!-- Free Plan -->
+                <div class="pricing-card fade-in-up animate-delay-1">
+                    <div class="plan-header">
+                        <h3 class="plan-name">Free</h3>
+                        <p class="plan-description">Get started with basic features</p>
+                    </div>
+                    
+                    <div class="plan-price">
+                        <div class="price-amount">
+                            <span class="price-currency">LKR</span>0
+                        </div>
+                        <div class="price-period">Forever free</div>
+                    </div>
+                    
+                    <ul class="plan-features">
+                        <li>
+                            <div class="feature-icon"><i class="fas fa-check"></i></div>
+                            <span>Browse limited profiles</span>
+                        </li>
+                        <li>
+                            <div class="feature-icon"><i class="fas fa-check"></i></div>
+                            <span>Receive interest requests</span>
+                        </li>
+                        <li>
+                            <div class="feature-icon"><i class="fas fa-check"></i></div>
+                            <span>Basic profile creation</span>
+                        </li>
+                        <li>
+                            <div class="feature-icon not-included"><i class="fas fa-times"></i></div>
+                            <span>Send interest requests</span>
+                        </li>
+                        <li>
+                            <div class="feature-icon not-included"><i class="fas fa-times"></i></div>
+                            <span>View contact details</span>
+                        </li>
+                        <li>
+                            <div class="feature-icon not-included"><i class="fas fa-times"></i></div>
+                            <span>Priority listing</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="plan-cta">
+                        <button class="cta-button secondary" onclick="selectPlan('free')">
+                            Get Started Free
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Silver Plan -->
+                <div class="pricing-card fade-in-up animate-delay-2">
+                    <div class="plan-header">
+                        <h3 class="plan-name">Silver</h3>
+                        <p class="plan-description">Perfect for active users</p>
+                    </div>
+                    
+                    <div class="plan-price">
+                        <div class="price-amount" id="silverPrice">
+                            <span class="price-currency">LKR</span>500
+                        </div>
+                        <div class="price-period" id="silverPeriod">per month</div>
+                    </div>
+                    
+                    <ul class="plan-features">
+                        <li>
+                            <div class="feature-icon"><i class="fas fa-check"></i></div>
+                            <span>Send 50 interest requests/month</span>
+                        </li>
+                        <li>
+                            <div class="feature-icon"><i class="fas fa-check"></i></div>
+                            <span>Enhanced profile visibility</span>
+                        </li>
+                        <li>
+                            <div class="feature-icon"><i class="fas fa-check"></i></div>
+                            <span>Advanced search filters</span>
+                        </li>
+                        <li>
+                            <div class="feature-icon"><i class="fas fa-check"></i></div>
+                            <span>Chat with matched users</span>
+                        </li>
+                        <li>
+                            <div class="feature-icon not-included"><i class="fas fa-times"></i></div>
+                            <span>View contact details</span>
+                        </li>
+                        <li>
+                            <div class="feature-icon not-included"><i class="fas fa-times"></i></div>
+                            <span>Priority customer support</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="plan-cta">
+                        <button class="cta-button primary" onclick="selectPlan('silver')">
+                            Choose Silver
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Gold Plan (Popular) -->
+                <div class="pricing-card popular fade-in-up animate-delay-3">
+                    <div class="plan-header">
+                        <h3 class="plan-name">Gold</h3>
+                        <p class="plan-description">Most popular choice</p>
+                    </div>
+                    
+                    <div class="plan-price">
+                        <div class="price-amount" id="goldPrice">
+                            <span class="price-currency">LKR</span>800
+                        </div>
+                        <div class="price-period" id="goldPeriod">per month</div>
+                    </div>
+                    
+                    <ul class="plan-features">
+                        <li>
+                            <div class="feature-icon"><i class="fas fa-check"></i></div>
+                            <span>Send 100 interest requests/month</span>
+                        </li>
+                        <li>
+                            <div class="feature-icon"><i class="fas fa-check"></i></div>
+                            <span>Priority profile listing</span>
+                        </li>
+                        <li>
+                            <div class="feature-icon"><i class="fas fa-check"></i></div>
+                            <span>Advanced matching algorithm</span>
+                        </li>
+                        <li>
+                            <div class="feature-icon"><i class="fas fa-check"></i></div>
+                            <span>View profile visitors</span>
+                        </li>
+                        <li>
+                            <div class="feature-icon"><i class="fas fa-check"></i></div>
+                            <span>Horoscope matching</span>
+                        </li>
+                        <li>
+                            <div class="feature-icon not-included"><i class="fas fa-times"></i></div>
+                            <span>Phone/email support</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="plan-cta">
+                        <button class="cta-button primary" onclick="selectPlan('gold')">
+                            Choose Gold
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Premium Plan -->
+                <div class="pricing-card premium fade-in-up animate-delay-4">
+                    <div class="plan-header">
+                        <h3 class="plan-name">Premium</h3>
+                        <p class="plan-description">Complete matrimonial solution</p>
+                    </div>
+                    
+                    <div class="plan-price">
+                        <div class="price-amount" id="premiumPrice">
+                            <span class="price-currency">LKR</span>1,200
+                        </div>
+                        <div class="price-period" id="premiumPeriod">per month</div>
+                    </div>
+                    
+                    <ul class="plan-features">
+                        <li>
+                            <div class="feature-icon"><i class="fas fa-check"></i></div>
+                            <span>Send 200 interest requests/month</span>
+                        </li>
+                        <li>
+                            <div class="feature-icon"><i class="fas fa-check"></i></div>
+                            <span>View contact details</span>
+                        </li>
+                        <li>
+                            <div class="feature-icon"><i class="fas fa-check"></i></div>
+                            <span>Dedicated relationship manager</span>
+                        </li>
+                        <li>
+                            <div class="feature-icon"><i class="fas fa-check"></i></div>
+                            <span>Phone & email support</span>
+                        </li>
+                        <li>
+                            <div class="feature-icon"><i class="fas fa-check"></i></div>
+                            <span>Profile verification assistance</span>
+                        </li>
+                        <li>
+                            <div class="feature-icon"><i class="fas fa-check"></i></div>
+                            <span>Wedding planning assistance</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="plan-cta">
+                        <button class="cta-button premium" onclick="selectPlan('premium')">
+                            Choose Premium
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Comparison Table -->
+    <section class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="comparison-table fade-in-up">
+                <div class="table-header">
+                    <h2 class="text-3xl font-bold mb-4">Detailed Feature Comparison</h2>
+                    <p class="text-blue-100">Compare all features across different plans</p>
+                </div>
+                
+                <div class="comparison-grid">
+                    <!-- Header Row -->
+                    <div class="table-cell plan-header">Features</div>
+                    <div class="table-cell plan-header">Free</div>
+                    <div class="table-cell plan-header">Silver</div>
+                    <div class="table-cell plan-header">Gold</div>
+                    <div class="table-cell plan-header">Premium</div>
+                    
+                    <!-- Profile Features -->
+                    <div class="table-cell feature-name">Profile Creation</div>
+                    <div class="table-cell"><i class="fas fa-check check-icon"></i></div>
+                    <div class="table-cell"><i class="fas fa-check check-icon"></i></div>
+                    <div class="table-cell"><i class="fas fa-check check-icon"></i></div>
+                    <div class="table-cell"><i class="fas fa-check check-icon"></i></div>
+                    
+                    <div class="table-cell feature-name">Interest Requests/Month</div>
+                    <div class="table-cell">0</div>
+                    <div class="table-cell">50</div>
+                    <div class="table-cell">100</div>
+                    <div class="table-cell">200</div>
+                    
+                    <div class="table-cell feature-name">Chat Feature</div>
+                    <div class="table-cell"><i class="fas fa-times cross-icon"></i></div>
+                    <div class="table-cell"><i class="fas fa-check check-icon"></i></div>
+                    <div class="table-cell"><i class="fas fa-check check-icon"></i></div>
+                    <div class="table-cell"><i class="fas fa-check check-icon"></i></div>
+                    
+                    <div class="table-cell feature-name">Advanced Search</div>
+                    <div class="table-cell"><i class="fas fa-times cross-icon"></i></div>
+                    <div class="table-cell"><i class="fas fa-check check-icon"></i></div>
+                    <div class="table-cell"><i class="fas fa-check check-icon"></i></div>
+                    <div class="table-cell"><i class="fas fa-check check-icon"></i></div>
+                    
+                    <div class="table-cell feature-name">View Contact Details</div>
+                    <div class="table-cell"><i class="fas fa-times cross-icon"></i></div>
+                    <div class="table-cell"><i class="fas fa-times cross-icon"></i></div>
+                    <div class="table-cell"><i class="fas fa-times cross-icon"></i></div>
+                    <div class="table-cell"><i class="fas fa-check check-icon"></i></div>
+                    
+                    <div class="table-cell feature-name">Priority Listing</div>
+                    <div class="table-cell"><i class="fas fa-times cross-icon"></i></div>
+                    <div class="table-cell"><i class="fas fa-times cross-icon"></i></div>
+                    <div class="table-cell"><i class="fas fa-check check-icon"></i></div>
+                    <div class="table-cell"><i class="fas fa-check check-icon"></i></div>
+                    
+                    <div class="table-cell feature-name">Horoscope Matching</div>
+                    <div class="table-cell"><i class="fas fa-times cross-icon"></i></div>
+                    <div class="table-cell"><i class="fas fa-times cross-icon"></i></div>
+                    <div class="table-cell"><i class="fas fa-check check-icon"></i></div>
+                    <div class="table-cell"><i class="fas fa-check check-icon"></i></div>
+                    
+                    <div class="table-cell feature-name">Customer Support</div>
+                    <div class="table-cell">Email</div>
+                    <div class="table-cell">Email</div>
+                    <div class="table-cell">Email</div>
+                    <div class="table-cell">Phone & Email</div>
+                    
+                    <div class="table-cell feature-name">Relationship Manager</div>
+                    <div class="table-cell"><i class="fas fa-times cross-icon"></i></div>
+                    <div class="table-cell"><i class="fas fa-times cross-icon"></i></div>
+                    <div class="table-cell"><i class="fas fa-times cross-icon"></i></div>
+                    <div class="table-cell"><i class="fas fa-check check-icon"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="success-stories fade-in-up">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">Success Stories from Our Premium Members</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">
+                        See how our premium features helped these couples find their perfect match faster
+                    </p>
+                </div>
+                
+                <div class="story-grid">
+                    <div class="story-card">
+                        <p class="story-quote">
+                            "The Premium plan's relationship manager was incredible. They helped us navigate through our initial conversations and provided valuable advice. We're getting married next month!"
+                        </p>
+                        <div class="story-author">Amara & Saman</div>
+                        <div class="story-date">Premium Members - Married 2023</div>
+                    </div>
+                    
+                    <div class="story-card">
+                        <p class="story-quote">
+                            "Gold plan's horoscope matching feature saved us so much time. We found our perfect astrological match and couldn't be happier with our decision."
+                        </p>
+                        <div class="story-author">Nisha & Roshan</div>
+                        <div class="story-date">Gold Members - Married 2023</div>
+                    </div>
+                    
+                    <div class="story-card">
+                        <p class="story-quote">
+                            "Even with the Silver plan, we found each other within 2 months. The enhanced visibility really made a difference in getting quality matches."
+                        </p>
+                        <div class="story-author">Priya & Malith</div>
+                        <div class="story-date">Silver Members - Married 2023</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Frequently Asked Questions</h2>
+                <p class="text-gray-600">Get answers to common questions about our pricing plans</p>
+            </div>
+            
+            <div class="faq-section fade-in-up">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(0)">
+                        <span>Can I upgrade or downgrade my plan anytime?</span>
+                        <i class="fas fa-chevron-down faq-icon" id="faq-icon-0"></i>
+                    </div>
+                    <div class="faq-answer" id="faq-answer-0">
+                        Yes, you can upgrade or downgrade your plan at any time. When you upgrade, you'll get immediate access to new features. When you downgrade, changes will take effect at the end of your current billing cycle.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(1)">
+                        <span>What happens if I don't find a match?</span>
+                        <i class="fas fa-chevron-down faq-icon" id="faq-icon-1"></i>
+                    </div>
+                    <div class="faq-answer" id="faq-answer-1">
+                        We're confident in our matching system, but if you don't find a suitable match within 6 months of premium membership, we'll extend your subscription for another 3 months at no additional cost.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(2)">
+                        <span>Are there any hidden fees?</span>
+                        <i class="fas fa-chevron-down faq-icon" id="faq-icon-2"></i>
+                    </div>
+                    <div class="faq-answer" id="faq-answer-2">
+                        No, there are no hidden fees. The price you see is exactly what you'll pay. All features listed in your plan are included without any additional charges.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(3)">
+                        <span>How secure are the payment transactions?</span>
+                        <i class="fas fa-chevron-down faq-icon" id="faq-icon-3"></i>
+                    </div>
+                    <div class="faq-answer" id="faq-answer-3">
+                        All payments are processed through secure, encrypted channels using industry-standard SSL technology. We partner with trusted payment gateways to ensure your financial information is completely secure.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(4)">
+                        <span>Can I get a refund if I'm not satisfied?</span>
+                        <i class="fas fa-chevron-down faq-icon" id="faq-icon-4"></i>
+                    </div>
+                    <div class="faq-answer" id="faq-answer-4">
+                        We offer a 7-day money-back guarantee for all paid plans. If you're not satisfied within the first week, contact our support team for a full refund.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold mb-6">Ready to Find Your Perfect Match?</h2>
+            <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+                Join thousands of happy couples who found their soulmate on Helakapuwa.com. Start your journey today!
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="register.html" class="bg-white text-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-50 transition-colors">
+                    <i class="fas fa-user-plus mr-2"></i>Create Free Account
+                </a>
+                <a href="browse-members.html" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+                    <i class="fas fa-search mr-2"></i>Browse Profiles
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-heart text-white"></i>
+                        </div>
+                        <span class="text-xl font-bold">Helakapuwa.com</span>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        Sri Lanka's most trusted matrimonial platform, helping thousands find their perfect life partner.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="about.html" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="browse-members.html" class="text-gray-300 hover:text-white transition-colors">Browse Profiles</a></li>
+                        <li><a href="pricing.html" class="text-gray-300 hover:text-white transition-colors">Pricing</a></li>
+                        <li><a href="contact.html" class="text-gray-300 hover:text-white transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Support</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Safety Tips</a></li>
+                        <li><a href="privacy.html" class="text-gray-300 hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="terms.html" class="text-gray-300 hover:text-white transition-colors">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Contact Info</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center">
+                            <i class="fas fa-phone mr-3 text-blue-400"></i>
+                            <span class="text-gray-300">+94 11 234 5678</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-blue-400"></i>
+                            <span class="text-gray-300">hello@helakapuwa.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="border-gray-600 my-8">
+            <div class="text-center text-gray-300">
+                <p>© 2024 Helakapuwa.com. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let isAnnual = false;
+
+        // Pricing data
+        const pricingData = {
+            silver: { monthly: 500, annual: 4000 },
+            gold: { monthly: 800, annual: 6400 },
+            premium: { monthly: 1200, annual: 9600 }
+        };
+
+        // Toggle billing period
+        function toggleBilling() {
+            const toggle = document.getElementById('billingToggle');
+            isAnnual = toggle.checked;
+            
+            const dot = document.querySelector('.dot');
+            if (isAnnual) {
+                dot.style.left = '32px';
+            } else {
+                dot.style.left = '4px';
+            }
+            
+            updatePricing();
+        }
+
+        // Update pricing display
+        function updatePricing() {
+            const plans = ['silver', 'gold', 'premium'];
+            
+            plans.forEach(plan => {
+                const priceElement = document.getElementById(`${plan}Price`);
+                const periodElement = document.getElementById(`${plan}Period`);
+                
+                if (isAnnual) {
+                    const annualPrice = pricingData[plan].annual;
+                    const monthlyEquivalent = Math.round(annualPrice / 12);
+                    priceElement.innerHTML = `<span class="price-currency">LKR</span>${annualPrice}`;
+                    periodElement.textContent = `per year (LKR ${monthlyEquivalent}/month)`;
+                } else {
+                    priceElement.innerHTML = `<span class="price-currency">LKR</span>${pricingData[plan].monthly}`;
+                    periodElement.textContent = 'per month';
+                }
+            });
+        }
+
+        // Select plan
+        function selectPlan(planType) {
+            if (planType === 'free') {
+                window.location.href = 'register.html';
+            } else {
+                // Store selected plan and redirect to payment
+                localStorage.setItem('selectedPlan', JSON.stringify({
+                    type: planType,
+                    billing: isAnnual ? 'annual' : 'monthly',
+                    price: planType === 'free' ? 0 : (isAnnual ? pricingData[planType].annual : pricingData[planType].monthly)
+                }));
+                
+                showNotification(`${planType.charAt(0).toUpperCase() + planType.slice(1)} plan selected! Redirecting to payment...`, 'success');
+                
+                setTimeout(() => {
+                    window.location.href = 'register.html?plan=' + planType;
+                }, 2000);
+            }
+        }
+
+        // Toggle FAQ
+        function toggleFAQ(index) {
+            const answer = document.getElementById(`faq-answer-${index}`);
+            const icon = document.getElementById(`faq-icon-${index}`);
+            
+            answer.classList.toggle('open');
+            icon.classList.toggle('rotated');
+        }
+
+        // Show notification
+        function showNotification(message, type = 'info') {
+            const existingNotifications = document.querySelectorAll('.notification');
+            existingNotifications.forEach(notif => notif.remove());
+
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? '#10B981' : type === 'error' ? '#EF4444' : '#3B82F6'};
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 0.5rem;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+                z-index: 10000;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                max-width: 300px;
+                font-weight: 500;
+            `;
+
+            notification.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                    <span>${message}</span>
+                    <button onclick="this.parentElement.parentElement.remove()" style="background: none; border: none; color: white; margin-left: auto; cursor: pointer;">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `;
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    if (notification.parentElement) {
+                        notification.remove();
+                    }
+                }, 300);
+            }, 4000);
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate elements on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in-up').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Check for selected plan from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const planFromUrl = urlParams.get('plan');
+            if (planFromUrl) {
+                showNotification(`${planFromUrl.charAt(0).toUpperCase() + planFromUrl.slice(1)} plan pre-selected. Complete registration to activate.`, 'info');
+            }
+        });
+    </script>
+</body>
+</html>

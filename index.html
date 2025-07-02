@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helakapuwa.com - Find Your Perfect Match in Sri Lanka</title>
+    
+    <!-- Meta tags for SEO -->
+    <meta name="description" content="Find your perfect life partner in Sri Lanka. Join thousands of successful matches on Helakapuwa.com - the most trusted matrimonial platform.">
+    <meta name="keywords" content="sri lanka matrimony, marriage proposals, wedding, life partner, sinhala matrimony">
+    
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Swiper CSS for carousels -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    
+    <style>
+        :root {
+            --primary-blue: #0096C7;
+            --secondary-blue: #0077A3;
+            --light-blue: #48CAE4;
+            --accent-gold: #FFD60A;
+            --text-dark: #1F2937;
+            --text-gray: #6B7280;
+            --bg-light: #F8FAFC;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Hero section background animation */
+        .hero-bg {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--light-blue) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>') no-repeat center center;
+            background-size: cover;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        /* Gradient text effect */
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent-gold) 0%, #FF6B6B 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Button animations */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 150, 199, 0.3);
+        }
+
+        /* Card hover effects */
+        .card-hover {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 150, 199, 0.1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 150, 199, 0.15);
+            border-color: var(--primary-blue);
+        }
+
+        /* Statistics counter animation */
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        /* Section divider */
+        .section-divider {
+            background: linear-gradient(90deg, transparent, var(--primary-blue), transparent);
+            height: 2px;
+            width: 100px;
+            margin: 0 auto;
+        }
+
+        /* Testimonial card styling */
+        .testimonial-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        /* Member card styling */
+        .member-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .member-card .profile-img {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--primary-blue) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        /* How it works animation */
+        .step-number {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--light-blue) 100%);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin: 0 auto 1rem;
+            position: relative;
+        }
+
+        .step-number::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border: 2px solid var(--light-blue);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* Swiper customization */
+        .swiper-pagination-bullet {
+            background: var(--primary-blue) !important;
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: var(--primary-blue) !important;
+        }
+
+        /* Responsive design improvements */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem !important;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+
+        /* Loading animation */
+        .loading-spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid var(--primary-blue);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Navbar styling */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 150, 199, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            box-shadow: 0 5px 20px rgba(0, 150, 199, 0.1);
+        }
+
+        /* Footer styling */
+        .footer {
+            background: linear-gradient(135deg, #1F2937 0%, #374151 100%);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-blue);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-blue);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar fixed top-0 left-0 right-0 z-50 py-4">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-heart text-white"></i>
+                    </div>
+                    <span class="text-xl font-bold text-gray-800">Helakapuwa.com</span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-blue-600 transition-colors">Home</a>
+                    <a href="#about" class="text-gray-700 hover:text-blue-600 transition-colors">About</a>
+                    <a href="#how-it-works" class="text-gray-700 hover:text-blue-600 transition-colors">How it Works</a>
+                    <a href="#pricing" class="text-gray-700 hover:text-blue-600 transition-colors">Pricing</a>
+                    <a href="login.html" class="text-blue-600 hover:text-blue-800 transition-colors">Login</a>
+                    <a href="register.html" class="btn-primary text-white px-6 py-2 rounded-full hover:shadow-lg transition-all">Join Now</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-gray-700" id="mobile-menu-btn">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="md:hidden mt-4 pb-4 border-t border-gray-200 hidden" id="mobile-menu">
+                <div class="flex flex-col space-y-4 mt-4">
+                    <a href="#home" class="text-gray-700 hover:text-blue-600 transition-colors">Home</a>
+                    <a href="#about" class="text-gray-700 hover:text-blue-600 transition-colors">About</a>
+                    <a href="#how-it-works" class="text-gray-700 hover:text-blue-600 transition-colors">How it Works</a>
+                    <a href="#pricing" class="text-gray-700 hover:text-blue-600 transition-colors">Pricing</a>
+                    <a href="login.html" class="text-blue-600 hover:text-blue-800 transition-colors">Login</a>
+                    <a href="register.html" class="btn-primary text-white px-6 py-2 rounded-full text-center">Join Now</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center relative pt-20">
+        <div class="container mx-auto px-4 z-10">
+            <div class="flex flex-col lg:flex-row items-center">
+                <!-- Hero Content -->
+                <div class="lg:w-1/2 text-center lg:text-left">
+                    <h1 class="hero-title text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+                        Find Your <span class="gradient-text">Perfect Match</span> in Sri Lanka
+                    </h1>
+                    <p class="text-xl text-blue-100 mb-8 leading-relaxed">
+                        Join thousands of successful couples who found their soulmates on Helakapuwa.com. 
+                        Your journey to happiness starts here.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="register.html" class="btn-primary text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-2xl transition-all">
+                            <i class="fas fa-heart mr-2"></i>
+                            Start Your Journey
+                        </a>
+                        <a href="browse-members.html" class="bg-white text-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-50 hover:shadow-lg transition-all">
+                            <i class="fas fa-search mr-2"></i>
+                            Browse Profiles
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Image/Stats -->
+                <div class="lg:w-1/2 mt-12 lg:mt-0 text-center">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="bg-white bg-opacity-20 backdrop-blur-lg rounded-2xl p-6 text-white">
+                            <div class="stat-number text-white" id="stat-members">0</div>
+                            <p class="text-blue-100">Active Members</p>
+                        </div>
+                        <div class="bg-white bg-opacity-20 backdrop-blur-lg rounded-2xl p-6 text-white">
+                            <div class="stat-number text-white" id="stat-matches">0</div>
+                            <p class="text-blue-100">Successful Matches</p>
+                        </div>
+                        <div class="bg-white bg-opacity-20 backdrop-blur-lg rounded-2xl p-6 text-white">
+                            <div class="stat-number text-white" id="stat-marriages">0</div>
+                            <p class="text-blue-100">Happy Marriages</p>
+                        </div>
+                        <div class="bg-white bg-opacity-20 backdrop-blur-lg rounded-2xl p-6 text-white">
+                            <div class="stat-number text-white" id="stat-cities">0</div>
+                            <p class="text-blue-100">Cities Covered</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Why Choose Helakapuwa.com?</h2>
+                <div class="section-divider mb-6"></div>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    We understand the importance of finding the right life partner. Our platform combines traditional values 
+                    with modern technology to help you find your perfect match.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card-hover bg-white rounded-2xl p-8 text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-shield-alt text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">100% Verified Profiles</h3>
+                    <p class="text-gray-600">All profiles are manually verified to ensure authenticity and safety for our members.</p>
+                </div>
+
+                <div class="card-hover bg-white rounded-2xl p-8 text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-users text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Smart Matching</h3>
+                    <p class="text-gray-600">Our advanced algorithm matches you with compatible partners based on your preferences.</p>
+                </div>
+
+                <div class="card-hover bg-white rounded-2xl p-8 text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-lock text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Privacy Protected</h3>
+                    <p class="text-gray-600">Your personal information is secure with our advanced privacy protection systems.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">How It Works</h2>
+                <div class="section-divider mb-6"></div>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Getting started is easy! Follow these simple steps to find your perfect match.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="step-number">1</div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Create Profile</h3>
+                    <p class="text-gray-600">Sign up and create your detailed profile with photos and preferences.</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="step-number">2</div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Browse Matches</h3>
+                    <p class="text-gray-600">Discover compatible profiles based on your preferences and criteria.</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="step-number">3</div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Connect & Chat</h3>
+                    <p class="text-gray-600">Send interest and start meaningful conversations with potential matches.</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="step-number">4</div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Meet & Marry</h3>
+                    <p class="text-gray-600">Take your relationship offline and build a beautiful future together.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Reviews Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Success Stories</h2>
+                <div class="section-divider mb-6"></div>
+                <p class="text-xl text-gray-600">Hear from our happy couples who found love on Helakapuwa.com</p>
+            </div>
+
+            <!-- Testimonials Carousel -->
+            <div class="swiper testimonials-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="testimonial-card bg-white rounded-2xl p-8 mx-4">
+                            <div class="flex items-center mb-6">
+                                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
+                                    A&S
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Amara & Saman</h4>
+                                    <p class="text-gray-600">Married in 2023</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 italic mb-4">
+                                "We found each other on Helakapuwa.com and knew instantly we were meant to be. 
+                                The platform made it so easy to connect and chat. Now we're happily married with a beautiful baby!"
+                            </p>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="testimonial-card bg-white rounded-2xl p-8 mx-4">
+                            <div class="flex items-center mb-6">
+                                <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-red-500 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
+                                    N&R
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Nisha & Roshan</h4>
+                                    <p class="text-gray-600">Married in 2022</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 italic mb-4">
+                                "After trying other platforms, we found Helakapuwa.com to be the most genuine and effective. 
+                                The verification process gave us confidence, and we met our soulmate within 3 months!"
+                            </p>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="testimonial-card bg-white rounded-2xl p-8 mx-4">
+                            <div class="flex items-center mb-6">
+                                <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-500 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
+                                    P&M
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Priya & Malith</h4>
+                                    <p class="text-gray-600">Married in 2023</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 italic mb-4">
+                                "The smart matching algorithm is incredible! It connected us based on our shared values and interests. 
+                                Helakapuwa.com truly understands what makes relationships work."
+                            </p>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination mt-8"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Members Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Recently Active Members</h2>
+                <div class="section-divider mb-6"></div>
+                <p class="text-xl text-gray-600">Connect with our newest members who are actively looking for their life partner</p>
+            </div>
+
+            <!-- Members Carousel -->
+            <div class="swiper members-swiper">
+                <div class="swiper-wrapper" id="members-container">
+                    <!-- Members will be loaded here dynamically -->
+                    <div class="swiper-slide">
+                        <div class="member-card p-6 text-center">
+                            <div class="profile-img mx-auto mb-4">P</div>
+                            <h3 class="font-semibold text-gray-800 mb-2">Priyanka</h3>
+                            <p class="text-gray-600 text-sm mb-2">25 Years, Colombo</p>
+                            <p class="text-gray-500 text-xs mb-4">Software Engineer</p>
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm hover:bg-blue-700 transition-colors">
+                                View Profile
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="member-card p-6 text-center">
+                            <div class="profile-img mx-auto mb-4">K</div>
+                            <h3 class="font-semibold text-gray-800 mb-2">Kasun</h3>
+                            <p class="text-gray-600 text-sm mb-2">28 Years, Kandy</p>
+                            <p class="text-gray-500 text-xs mb-4">Doctor</p>
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm hover:bg-blue-700 transition-colors">
+                                View Profile
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="member-card p-6 text-center">
+                            <div class="profile-img mx-auto mb-4">S</div>
+                            <h3 class="font-semibold text-gray-800 mb-2">Sanduni</h3>
+                            <p class="text-gray-600 text-sm mb-2">24 Years, Galle</p>
+                            <p class="text-gray-500 text-xs mb-4">Teacher</p>
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm hover:bg-blue-700 transition-colors">
+                                View Profile
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="member-card p-6 text-center">
+                            <div class="profile-img mx-auto mb-4">R</div>
+                            <h3 class="font-semibold text-gray-800 mb-2">Roshan</h3>
+                            <p class="text-gray-600 text-sm mb-2">30 Years, Negombo</p>
+                            <p class="text-gray-500 text-xs mb-4">Businessman</p>
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm hover:bg-blue-700 transition-colors">
+                                View Profile
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="member-card p-6 text-center">
+                            <div class="profile-img mx-auto mb-4">T</div>
+                            <h3 class="font-semibold text-gray-800 mb-2">Tharaka</h3>
+                            <p class="text-gray-600 text-sm mb-2">27 Years, Matara</p>
+                            <p class="text-gray-500 text-xs mb-4">Engineer</p>
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm hover:bg-blue-700 transition-colors">
+                                View Profile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination mt-8"></div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="browse-members.html" class="btn-primary text-white px-8 py-3 rounded-full text-lg font-semibold hover:shadow-lg transition-all">
+                    <i class="fas fa-users mr-2"></i>
+                    View All Members
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 hero-bg">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold text-white mb-6">Ready to Find Your Perfect Match?</h2>
+            <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+                Join thousands of successful couples and start your journey to finding true love today.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="register.html" class="bg-white text-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-50 hover:shadow-lg transition-all">
+                    <i class="fas fa-user-plus mr-2"></i>
+                    Create Free Account
+                </a>
+                <a href="pricing.html" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-blue-600 transition-all">
+                    <i class="fas fa-crown mr-2"></i>
+                    View Premium Plans
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer text-white py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-heart text-white"></i>
+                        </div>
+                        <span class="text-xl font-bold">Helakapuwa.com</span>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        Sri Lanka's most trusted matrimonial platform, helping thousands find their perfect life partner.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">How it Works</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Success Stories</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Safety Tips</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Help Center</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Services</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Browse Profiles</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Premium Membership</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Horoscope Matching</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Wedding Planning</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Mobile App</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Contact Us</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center">
+                            <i class="fas fa-map-marker-alt mr-3 text-blue-400"></i>
+                            <span class="text-gray-300">123 Main Street, Colombo 03, Sri Lanka</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-phone mr-3 text-blue-400"></i>
+                            <span class="text-gray-300">+94 11 234 5678</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-blue-400"></i>
+                            <span class="text-gray-300">hello@helakapuwa.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="border-gray-600 my-8">
+
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-300 text-sm">
+                    © 2024 Helakapuwa.com. All rights reserved.
+                </p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="privacy.html" class="text-gray-300 hover:text-white text-sm transition-colors">Privacy Policy</a>
+                    <a href="terms.html" class="text-gray-300 hover:text-white text-sm transition-colors">Terms & Conditions</a>
+                    <a href="contact.html" class="text-gray-300 hover:text-white text-sm transition-colors">Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-6 right-6 bg-blue-600 text-white w-12 h-12 rounded-full shadow-lg hover:bg-blue-700 transition-all opacity-0 pointer-events-none">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Statistics counter animation
+        function animateCounter(element, target, duration = 2000) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    element.textContent = target.toLocaleString();
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(start).toLocaleString();
+                }
+            }, 16);
+        }
+
+        // Initialize counters when hero section is visible
+        const observerOptions = {
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(document.getElementById('stat-members'), 15420);
+                    animateCounter(document.getElementById('stat-matches'), 2340);
+                    animateCounter(document.getElementById('stat-marriages'), 1876);
+                    animateCounter(document.getElementById('stat-cities'), 25);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        observer.observe(document.querySelector('#home'));
+
+        // Initialize Swiper for testimonials
+        const testimonialsSwiper = new Swiper('.testimonials-swiper', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                }
+            }
+        });
+
+        // Initialize Swiper for members
+        const membersSwiper = new Swiper('.members-swiper', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                480: {
+                    slidesPerView: 2,
+                },
+                768: {
+                    slidesPerView: 3,
+                },
+                1024: {
+                    slidesPerView: 4,
+                },
+                1280: {
+                    slidesPerView: 5,
+                }
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Back to top button
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.style.opacity = '1';
+                backToTopBtn.style.pointerEvents = 'auto';
+            } else {
+                backToTopBtn.style.opacity = '0';
+                backToTopBtn.style.pointerEvents = 'none';
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Loading animation for buttons
+        document.querySelectorAll('.btn-primary').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                if (this.getAttribute('href') && this.getAttribute('href').includes('.html')) {
+                    e.preventDefault();
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Loading...';
+                    this.style.pointerEvents = 'none';
+                    
+                    setTimeout(() => {
+                        window.location.href = this.getAttribute('href');
+                    }, 1000);
+                }
+            });
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add fade-in animation to sections
+            const sections = document.querySelectorAll('section');
+            sections.forEach((section, index) => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'all 0.6s ease';
+                
+                setTimeout(() => {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+
+            console.log('🎉 Helakapuwa.com loaded successfully!');
+        });
+
+        // Add some interactive effects
+        document.querySelectorAll('.card-hover').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

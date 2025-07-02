@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="si" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ශ්‍රී ලංකාවේ ප්‍රමුඛතම විවාහ තේරීම් වෙබ් අඩවිය. ඔබේ ජීවිත සහකරු සොයා ගන්න Helakapuwa.com හි.">
+    <meta name="keywords" content="sri lanka matrimony, wedding, marriage, partner, විවාහ, ජීවිත සහකරු">
+    <title>Helakapuwa.com - ඔබේ ජීවිත සහකරු සොයා ගන්න</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+    
+    <!-- CSS Libraries -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            --primary-color: #0096C7;
+            --primary-dark: #007BB5;
+            --primary-light: #48CAE4;
+        }
+        
+        .bg-primary { background-color: var(--primary-color); }
+        .text-primary { color: var(--primary-color); }
+        .border-primary { border-color: var(--primary-color); }
+        .hover\:bg-primary-dark:hover { background-color: var(--primary-dark); }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .animate-on-scroll.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .member-card {
+            transition: all 0.3s ease;
+        }
+        
+        .member-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 150, 199, 0.15);
+        }
+        
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: scale(1.02);
+        }
+        
+        .step-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stats-counter {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 150, 199, 0.3);
+        }
+        
+        .hero-image {
+            background: url('img/hero-couple.jpg') center/cover no-repeat;
+            position: relative;
+        }
+        
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, rgba(0, 150, 199, 0.8) 0%, rgba(72, 202, 228, 0.6) 100%);
+        }
+        
+        .success-badge {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+        
+        .online-indicator {
+            position: relative;
+        }
+        
+        .online-indicator::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 12px;
+            height: 12px;
+            background: #10b981;
+            border: 2px solid white;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .feature-icon {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+                line-height: 1.2;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Floating Hearts Background -->
+    <div id="floating-hearts" class="floating-hearts"></div>
+
+    <!-- Header -->
+    <header class="glass-effect fixed top-0 w-full z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <a href="index.html" class="text-2xl font-bold text-primary hover:text-primary-dark transition-colors">
+                        <i class="fas fa-heart mr-2 text-red-500"></i>
+                        <span class="bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">
+                            Helakapuwa.com
+                        </span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-primary transition-colors">මුල් පිටුව</a>
+                    <a href="#how-it-works" class="text-gray-700 hover:text-primary transition-colors">කෙසේ වැඩ කරයිද</a>
+                    <a href="#testimonials" class="text-gray-700 hover:text-primary transition-colors">සාර්ථකතා කතා</a>
+                    <a href="#members" class="text-gray-700 hover:text-primary transition-colors">සාමාජිකයන්</a>
+                    <a href="pricing.html" class="text-gray-700 hover:text-primary transition-colors">මිල ගණන්</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-primary transition-colors">සම්බන්ධ වන්න</a>
+                </nav>
+                
+                <!-- Auth Buttons -->
+                <div class="hidden sm:flex items-center space-x-4">
+                    <a href="login.html" class="text-gray-600 hover:text-primary transition-colors">
+                        ප්‍රවේශ වන්න
+                    </a>
+                    <a href="register.html" class="btn-primary text-white px-6 py-2 rounded-lg hover:bg-primary-dark transition-all">
+                        ලියාපදිංචි වන්න
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button class="lg:hidden p-2 text-gray-600 hover:text-primary transition-colors" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="lg:hidden hidden bg-white border-t border-gray-200">
+            <div class="px-4 py-2 space-y-2">
+                <a href="#home" class="block py-2 text-gray-700 hover:text-primary">මුල් පිටුව</a>
+                <a href="#how-it-works" class="block py-2 text-gray-700 hover:text-primary">කෙසේ වැඩ කරයිද</a>
+                <a href="#testimonials" class="block py-2 text-gray-700 hover:text-primary">සාර්ථකතා කතා</a>
+                <a href="#members" class="block py-2 text-gray-700 hover:text-primary">සාමාජිකයන්</a>
+                <a href="pricing.html" class="block py-2 text-gray-700 hover:text-primary">මිල ගණන්</a>
+                <a href="contact.html" class="block py-2 text-gray-700 hover:text-primary">සම්බන්ධ වන්න</a>
+                <div class="border-t border-gray-200 pt-2 space-y-2">
+                    <a href="login.html" class="block py-2 text-gray-600">ප්‍රවේශ වන්න</a>
+                    <a href="register.html" class="block py-2 bg-primary text-white text-center rounded-lg">ලියාපදිංචි වන්න</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient min-h-screen flex items-center relative overflow-hidden">
+        <!-- Background Elements -->
+        <div id="hero-background" class="absolute inset-0"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Hero Content -->
+                <div class="text-white animate-on-scroll">
+                    <h1 class="hero-title text-4xl lg:text-6xl font-bold mb-6 leading-tight">
+                        ඔබේ ජීවිත සහකරු 
+                        <span class="text-yellow-300">සොයා ගන්න</span>
+                    </h1>
+                    <p class="text-xl lg:text-2xl mb-8 text-blue-100 leading-relaxed">
+                        ශ්‍රී ලංකාවේ ප්‍රමුඛතම විවාහ තේරීම් වෙබ් අඩවියේ ඔබේ ideal partner හමුවන්න
+                    </p>
+                    
+                    <!-- Stats -->
+                    <div class="grid grid-cols-3 gap-4 mb-8">
+                        <div class="text-center">
+                            <div class="stats-counter text-3xl font-bold" data-target="50000">0</div>
+                            <div class="text-blue-100 text-sm">සාමාජිකයන්</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="stats-counter text-3xl font-bold" data-target="5000">0</div>
+                            <div class="text-blue-100 text-sm">සාර්ථක විවාහ</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="stats-counter text-3xl font-bold" data-target="10">0</div>
+                            <div class="text-blue-100 text-sm">වසරක අත්දැකීම</div>
+                        </div>
+                    </div>
+                    
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="register.html" class="btn-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-primary-dark transition-all text-center">
+                            <i class="fas fa-heart mr-2"></i>
+                            දැන්ම ආරම්භ කරන්න
+                        </a>
+                        <a href="#how-it-works" class="bg-white bg-opacity-20 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-opacity-30 transition-all text-center border border-white border-opacity-30">
+                            <i class="fas fa-play mr-2"></i>
+                            කෙසේ වැඩ කරයිද
+                        </a>
+                    </div>
+                    
+                    <!-- Trust Badges -->
+                    <div class="flex items-center gap-6 mt-8">
+                        <div class="flex items-center text-blue-100">
+                            <i class="fas fa-shield-alt mr-2 text-green-400"></i>
+                            <span class="text-sm">100% ආරක්ෂිත</span>
+                        </div>
+                        <div class="flex items-center text-blue-100">
+                            <i class="fas fa-user-check mr-2 text-green-400"></i>
+                            <span class="text-sm">පරිපූර්ණ Profiles</span>
+                        </div>
+                        <div class="flex items-center text-blue-100">
+                            <i class="fas fa-medal mr-2 text-yellow-400"></i>
+                            <span class="text-sm">Award Winning</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hero Image -->
+                <div class="animate-on-scroll animate-float">
+                    <div class="relative">
+                        <img src="img/hero-couple.jpg" alt="Happy Couple" class="rounded-2xl shadow-2xl w-full" onerror="this.src='img/placeholder-couple.jpg'">
+                        <div class="absolute -bottom-6 -left-6 glass-effect rounded-xl p-4 text-gray-800">
+                            <div class="flex items-center">
+                                <div class="success-badge w-12 h-12 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fas fa-check text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <div class="font-semibold">සාර්ථකයි!</div>
+                                    <div class="text-sm text-gray-600">අද නව match 12ක්</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">කෙසේ වැඩ කරයිද</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    සරල පියවර 3කින් ඔබේ ජීවිත සහකරු හමුවන්න
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Step 1 -->
+                <div class="step-card rounded-2xl p-8 text-center animate-on-scroll">
+                    <div class="feature-icon w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-user-plus text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">1. ලියාපදිංචි වන්න</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        ඔබේ profile එක සාදා ගෙන ඔබ ගැන සහ ඔබේ ideal partner ගැන විස්තර කරන්න
+                    </p>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="step-card rounded-2xl p-8 text-center animate-on-scroll">
+                    <div class="feature-icon w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-search text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">2. Search කරන්න</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Advanced filters භාවිතා කරලා ඔබේ preferences වලට ගැලපෙන profiles සොයන්න
+                    </p>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="step-card rounded-2xl p-8 text-center animate-on-scroll">
+                    <div class="feature-icon w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-heart text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">3. Connect වන්න</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Interested profiles වලට requests යවලා chat කරලා ඔබේ life partner සොයා ගන්න
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Members Section -->
+    <section id="members" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Live සාමාජිකයන්</h2>
+                <p class="text-xl text-gray-600">
+                    දැන්ම online වී ඇති සාමාජිකයන් හමුවන්න
+                </p>
+            </div>
+            
+            <!-- Members Carousel -->
+            <div id="liveMembersCarousel" class="animate-on-scroll">
+                <!-- Will be populated by animations.js -->
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="browse-members.html" class="btn-primary text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-primary-dark transition-all">
+                    <i class="fas fa-users mr-2"></i>
+                    තවත් සාමාජිකයන් බලන්න
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">සාර්ථකතා කතා</h2>
+                <p class="text-xl text-gray-600">
+                    Helakapuwa.com හරහා සිය ජීවිත සහකරු සොයා ගත් couples ගේ කතා
+                </p>
+            </div>
+            
+            <!-- Testimonials Carousel -->
+            <div id="testimonialCarousel" class="animate-on-scroll">
+                <!-- Will be populated by animations.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 bg-gradient-to-br from-blue-50 to-indigo-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">ඇයි Helakapuwa.com?</h2>
+                <p class="text-xl text-gray-600">
+                    ශ්‍රී ලංකාවේ #1 matrimonial platform වීමට හේතු
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-all animate-on-scroll">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-shield-alt text-2xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">100% ආරක්ෂිත</h3>
+                    <p class="text-gray-600 text-sm">SSL encryption සහ privacy protection</p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-all animate-on-scroll">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-user-check text-2xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Verified Profiles</h3>
+                    <p class="text-gray-600 text-sm">සියලුම profiles verify කර ඇත</p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-all animate-on-scroll">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-search text-2xl text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Smart Matching</h3>
+                    <p class="text-gray-600 text-sm">AI powered compatibility matching</p>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-all animate-on-scroll">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-headset text-2xl text-red-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">24/7 Support</h3>
+                    <p class="text-gray-600 text-sm">සෑම විටම customer support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 hero-gradient">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="animate-on-scroll">
+                <h2 class="text-4xl font-bold text-white mb-6">
+                    ඔබේ ජීවිත සහකරු අද සොයා ගන්න!
+                </h2>
+                <p class="text-xl text-blue-100 mb-8 leading-relaxed">
+                    50,000+ verified profiles ඇතුළෙන් ඔබේ perfect match එක සොයන්න. 
+                    දැන්ම ලියාපදිංචි වෙලා ඔබේ ආදර කතාව ආරම්භ කරන්න.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="register.html" class="bg-white text-primary px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-all">
+                        <i class="fas fa-user-plus mr-2"></i>
+                        Free Registration
+                    </a>
+                    <a href="pricing.html" class="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-primary transition-all">
+                        <i class="fas fa-crown mr-2"></i>
+                        Premium Packages
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div class="md:col-span-2">
+                    <div class="mb-6">
+                        <a href="index.html" class="text-2xl font-bold text-white hover:text-primary transition-colors">
+                            <i class="fas fa-heart mr-2 text-red-500"></i>
+                            Helakapuwa.com
+                        </a>
+                        <p class="text-gray-300 mt-4 leading-relaxed">
+                            ශ්‍රී ලංකාවේ ප්‍රමුඛතම විවාහ තේරීම් වෙබ් අඩවිය. 
+                            ඔබේ ජීවිත සහකරු සොයා ගැනීම සඳහා ආරක්ෂිත සහ විශ්වසනීය platform එකක්.
+                        </p>
+                    </div>
+                    
+                    <!-- Social Media -->
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-300 hover:bg-blue-600 hover:text-white transition-all">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-300 hover:bg-pink-600 hover:text-white transition-all">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-300 hover:bg-blue-400 hover:text-white transition-all">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-300 hover:bg-red-600 hover:text-white transition-all">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">ඉක්මන් සබැඳි</h4>
+                    <ul class="space-y-2">
+                        <li><a href="about.html" class="text-gray-300 hover:text-primary transition-colors">අප ගැන</a></li>
+                        <li><a href="pricing.html" class="text-gray-300 hover:text-primary transition-colors">මිල ගණන්</a></li>
+                        <li><a href="contact.html" class="text-gray-300 hover:text-primary transition-colors">සම්බන්ධ වන්න</a></li>
+                        <li><a href="help.html" class="text-gray-300 hover:text-primary transition-colors">උදව්</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Legal -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">නීතිමය</h4>
+                    <ul class="space-y-2">
+                        <li><a href="privacy.html" class="text-gray-300 hover:text-primary transition-colors">Privacy Policy</a></li>
+                        <li><a href="terms.html" class="text-gray-300 hover:text-primary transition-colors">Terms & Conditions</a></li>
+                        <li><a href="safety.html" class="text-gray-300 hover:text-primary transition-colors">Safety Tips</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Helakapuwa.com. සියලුම අයිතිවාසිකම් ආරක්ෂිතයි.</p>
+                <p class="mt-2">Made with <i class="fas fa-heart text-red-500"></i> in Sri Lanka</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="js/animations.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        }
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-lg');
+            } else {
+                navbar.classList.remove('shadow-lg');
+            }
+        });
+        
+        // Counter animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stats-counter');
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                let current = 0;
+                
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.textContent = Math.floor(current).toLocaleString();
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target.toLocaleString();
+                    }
+                };
+                
+                updateCounter();
+            });
+        }
+        
+        // Scroll animations
+        function initScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                        
+                        // Trigger counter animation for hero section
+                        if (entry.target.querySelector('.stats-counter')) {
+                            setTimeout(animateCounters, 500);
+                        }
+                        
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all elements with animate-on-scroll class
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+        }
+        
+        // Smooth scrolling for anchor links
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('a[href^="#"]')) {
+                e.preventDefault();
+                const target = document.querySelector(e.target.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.offsetTop;
+                    const offsetPosition = elementPosition - headerOffset;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+        
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initScrollAnimations();
+            
+            // Add some delay for hero animation
+            setTimeout(() => {
+                document.querySelector('#home .animate-on-scroll').classList.add('animate-in');
+            }, 500);
+        });
+        
+        // Preload important images
+        function preloadImages() {
+            const imageUrls = [
+                'img/hero-couple.jpg',
+                'img/testimonials/couple1.jpg',
+                'img/testimonials/couple2.jpg',
+                'img/members/member1.jpg',
+                'img/members/member2.jpg'
+            ];
+            
+            imageUrls.forEach(url => {
+                const img = new Image();
+                img.src = url;
+            });
+        }
+        
+        // Call preload on page load
+        window.addEventListener('load', preloadImages);
+    </script>
+</body>
+</html>
